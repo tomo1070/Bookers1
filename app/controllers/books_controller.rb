@@ -4,13 +4,19 @@ class BooksController < ApplicationController
   end
 
   def create
-    book = Book.new(book_params)
-    book.save
-    redirect_to book_path(book.id)
+    @book = Book.new(book_params)
+    if @book.save
+      flash[:notice] = "投稿に成功しました"
+      redirect_to book_path(@book.id)
+    else
+      flash.now[:alert] = "投稿に失敗しました"
+      render :new
+    end
   end
 
   def index
     @book = Book.all
+    @new_book = Book.new
   end
 
   def show
@@ -24,7 +30,8 @@ class BooksController < ApplicationController
   def update
     book = Book.find(params[:id])
     book.update(book_params)
-    redirect_to book_path(book.id)
+    flash[:notice] = "修正しました"
+    redirect_to book_path(book)
   end
 
   def destroy

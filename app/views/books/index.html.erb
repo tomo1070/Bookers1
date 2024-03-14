@@ -1,7 +1,23 @@
-<h1>投稿一覧</h1>
+<div class="book-wrap">
 <% @book.each do |book| %>
-  <p>印象</p>
-  <span>
-    <%= link_to book.title, book_path(book.id) %>
-    </span>
+  <div class="book-comment">
+    <span class="book-body"><%= book.body %></span>
+    <span class="book-title"><%=link_to book.title, book_path(book.id) %></span>
+  </div>
 <% end %>
+</div>
+<div class="book-form">
+  <%= form_for @new_book do |f| %>
+    <div class="field">
+      <%= f.label :title %>
+      <%= f.text_field :title %>
+    </div>
+    <div class="field">
+      <%= f.label :body %>
+      <%= f.text_area :body %>
+    </div>
+    <div class="actions">
+      <%= f.submit "投稿" %>
+    </div>
+  <% end %>
+</div>
