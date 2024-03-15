@@ -1,11 +1,18 @@
+<h1>投稿一覧</h1>
 <div class="book-wrap">
-<% @book.each do |book| %>
+<% @books.each do |book| %>
   <div class="book-comment">
+    <span class="book-title"><%= book.title %></span>
     <span class="book-body"><%= book.body %></span>
-    <span class="book-title"><%=link_to book.title, book_path(book.id) %></span>
+     <tr>
+       <td><%= link_to 'Show', book %></td>
+       <td><%= link_to 'Edit', edit_book_path(book) %></td>
+       <td><%= link_to 'Destroy', book, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+     </tr>
   </div>
 <% end %>
 </div>
+<h1>New Book</h1>
 <div class="book-form">
   <%= form_for @new_book do |f| %>
     <div class="field">
@@ -17,7 +24,7 @@
       <%= f.text_area :body %>
     </div>
     <div class="actions">
-      <%= f.submit "投稿" %>
+      <%= f.submit "Create Book" %>
     </div>
   <% end %>
 </div>
