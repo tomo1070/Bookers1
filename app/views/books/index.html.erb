@@ -4,11 +4,13 @@
   <div class="book-comment">
     <span class="book-title"><%= book.title %></span>
     <span class="book-body"><%= book.body %></span>
-     <tr>
-       <td><%= link_to 'Show', book %></td>
-       <td><%= link_to 'Edit', edit_book_path(book) %></td>
-       <td><%= link_to 'Destroy', book, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-     </tr>
+    <table>
+      <tr>
+        <td><%= link_to 'Show', book_path(book) %></td>
+        <td><%= link_to 'Edit', edit_book_path(book) %></td>
+        <td><%= link_to 'Destroy', book, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    </table>
   </div>
 <% end %>
 </div>
